@@ -8,6 +8,7 @@ class TwoSum:
                 return [i, hashmap[complement]]
             hashmap[nums[i]] = i
 
+
 if __name__ == "__main__":
     obj = TwoSum()
     input = [2,5,5,15]
