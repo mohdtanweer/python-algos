@@ -34,6 +34,7 @@ class ValidateBST1:
         return validate(root)
 
 
+# Approach 2
 class ValidateBST2:
     def is_valid_bst(self, root: TreeNode) -> bool:
         def inorder(root):
