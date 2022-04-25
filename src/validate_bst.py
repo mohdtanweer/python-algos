@@ -16,8 +16,9 @@ class TreeNode:
         return str(self.val)
 
 
-class Validate_BST:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+# Approach 1
+class ValidateBST1:
+    def is_valid_bst(self, root: Optional[TreeNode]) -> bool:
         def validate(node, low=-math.inf, high=math.inf):
             # Empty trees are valid BSTs.
             if not node:
@@ -31,6 +32,22 @@ class Validate_BST:
                    validate(node.left, low, node.val))
 
         return validate(root)
+
+
+class ValidateBST2:
+    def is_valid_bst(self, root: TreeNode) -> bool:
+        def inorder(root):
+            if not root:
+                return True
+            if not inorder(root.left):
+                return False
+            if root.val <= self.prev:
+                return False
+            self.prev = root.val
+            return inorder(root.right)
+
+        self.prev = -math.inf
+        return inorder(root)
 
 
 def to_binary_tree(items: List[int]) -> TreeNode:
@@ -52,7 +69,7 @@ def to_binary_tree(items: List[int]) -> TreeNode:
 
 
 if __name__ == "__main__":
-    obj = Validate_BST()
-    inp = [10, 5, 15, 3, 7, None, 17]
+    inp = [10, 5, 15, 3, 7, None, 16]
     root = to_binary_tree(inp)
-    print(obj.isValidBST(root))
+    obj = ValidateBST2()  # Approach 1
+    print(obj.is_valid_bst(root))
